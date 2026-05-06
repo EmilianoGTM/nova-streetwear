@@ -467,14 +467,14 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
 <!-- TOAST -->
 <div class="toast" id="toast">Agregado al carrito ✓</div>
 
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   var emailjsConfig = {
     serviceId: 'service_9nltidf',
     templateId: 'template_ypyqsb1',
     publicKey: '2ohY_wJ816EP3OH-g'
   };
-  emailjs.init(emailjsConfig.publicKey);
+  emailjs.init({ publicKey: emailjsConfig.publicKey });
 </script>
 
 <!-- NAV -->
@@ -1142,16 +1142,19 @@ function submitCheckout(e) {
 
   resultEl.innerHTML = '<p>Enviando pedido por correo...</p>';
 
+  // Enviar usando EmailJS directamente para que funcione en servidores locales estáticos
   emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, emailParams)
     .then(function(response) {
-      resultEl.innerHTML = '<strong>Pedido enviado correctamente.</strong><p>Revisa tu correo para el resumen de compra. Si no llega, comprueba tu configuración de EmailJS.</p>' +
+      console.log('¡Correo enviado con éxito!', response.status, response.text);
+      resultEl.innerHTML = '<strong>Pedido enviado correctamente.</strong><p>Revisa tu correo para el resumen de compra. Si no llega, comprueba tu bandeja de spam.</p>' +
         '<pre style="white-space:pre-wrap;color:var(--white);font-family:inherit;background:rgba(255,255,255,.04);padding:1rem;border-radius:12px;line-height:1.6;">' + communication + '</pre>';
       document.getElementById('checkout-form').reset();
       cartItems = [];
       updateCartUI();
-    }, function(error) {
-      resultEl.innerHTML = '<strong>Error al enviar correo.</strong><p>Revisa tu configuración de EmailJS y vuelve a intentar.</p>';
-      console.error('EmailJS error:', error);
+    })
+    .catch(function(error) {
+      console.log('Error al enviar el correo...', error);
+      resultEl.innerHTML = '<strong>Error al enviar correo.</strong><p>Por favor intenta de nuevo en unos momentos.</p><p style="font-size:.85rem;color:var(--muted);">Detalles: ' + (error.text || error.message || error) + '</p>';
     });
 }
 
