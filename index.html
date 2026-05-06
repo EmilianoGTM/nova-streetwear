@@ -4,18 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NOVA STREETWEAR</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--black:#080808;--white:#f2ede8;--gray:#141414;--gray2:#1e1e1e;--gray3:#2a2a2a;--gray4:#444;--muted:#888;--red:#c0392b}
+:root{--black:#050505;--white:#f4f4f0;--gray:#0f0f0f;--gray2:#171717;--gray3:#262626;--gray4:#404040;--muted:#8a8a8a;--red:#ff1a1a;--bg-rgb:5,5,5;--font-head:'Anton',sans-serif;--font-body:'Space Grotesk',sans-serif}
 html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden}
+body{background:var(--black);color:var(--white);font-family:var(--font-body);font-weight:300;overflow-x:hidden}
+/* RUIDO VISUAL / TEXTURA STREETWEAR */
+body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;background:url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="n"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23n)" opacity="0.05"/%3E%3C/svg%3E')}
+/* OVERRIDES DE TIPOGRAFÍA DE MARCA */
+h1,h2,h3,.htitle,.dtitle,.sec-title,.cname,.wnum,.nl-title,.contact-title,.nm,.ti span,.cart-head h2,.checkout-modal h2,.modal-name,.cart-item-price,.cart-total-val,.modal-price,.epic-badge,.quote-result,.pprice,.stmt-q{font-family:var(--font-head)!important;font-weight:normal;letter-spacing:0.03em;text-transform:uppercase}
+.nav-links a,.nav-cart,.btn-p,.btn-g,.fbtn,.padd,.nlbtn,.quote-btn,.modal-add-btn,.zoom-btn,.cart-checkout,.htag,.pbadge,.drops-lbl,.dbadge,.clbl,.sec-link,.pname,.p-urgency,.vitem,.ctag,.wtit,.contact-label,.toast,.fbrand span,.flinks a{font-family:var(--font-body)!important;letter-spacing:0.05em;text-transform:uppercase;font-weight:600}
 ::selection{background:var(--white);color:var(--black)}
 a{text-decoration:none;color:inherit}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--black)}::-webkit-scrollbar-thumb{background:var(--gray4)}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;border-bottom:1px solid #1f1f1f;background:rgba(8,8,8,.96);backdrop-filter:blur(10px)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;border-bottom:1px solid var(--gray3);background:rgba(var(--bg-rgb),.96);backdrop-filter:blur(10px)}
 .nav-brand{display:flex;flex-direction:column;line-height:1}
 .nav-brand .nm{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:.1em}
 .nav-brand .ns{font-family:'Barlow Condensed',sans-serif;font-size:.6rem;letter-spacing:.35em;color:var(--muted);margin-top:-2px}
@@ -29,31 +34,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .hero{min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Cambia de flex-end a center */
-  padding: 0 2.5rem;       /* Elimina el 4rem del final */
+  justify-content: flex-end;
+  padding: 4rem 2.5rem;
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid #1f1f1f;}
-.hero-bg{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 60px,#111 60px,#111 61px),repeating-linear-gradient(90deg,transparent,transparent 60px,#111 60px,#111 61px);z-index:0}
-.hero-star{position: absolute;
-  top: 45%;               /* Bajalo de 50% a 45% o 40% para subir el logo */
-  right: 4%;
-  transform: translateY(-50%);
-  z-index: 1;
-  opacity: 1;             /* Como lo configuramos antes */
-  pointer-events: none;}
-.hero-star img{width:650px;height:650px;object-fit:contain;filter:grayscale(1) brightness(1)}
-.htag{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;position:relative;z-index:2}
-.htitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,14vw,13rem);line-height:.88;position:relative;z-index:2;letter-spacing:.02em}
+  border-bottom: none;}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(0.5)}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top, rgba(var(--bg-rgb),1) 0%, rgba(var(--bg-rgb),0) 50%);z-index:1}
+.hero-content{position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto}
+.htag{font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:.3em;text-transform:uppercase;color:var(--white);margin-bottom:1rem;font-weight:700;display:inline-block;background:var(--red);padding:.3rem .8rem}
+.htitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.5rem,12vw,11rem);line-height:.85;letter-spacing:.02em;margin-bottom:1.5rem}
 .htitle .ol{-webkit-text-stroke:1px var(--white);color:transparent}
-.hrow{display:flex;align-items:flex-end;justify-content:space-between;position:relative;z-index:2;margin-top:2rem;flex-wrap:wrap;gap:2rem}
-.hslogan{font-family:'Barlow Condensed',sans-serif;font-size:1rem;letter-spacing:.05em;color:var(--muted);max-width:300px;line-height:1.6;font-style:italic}
-.hslogan strong{color:var(--white);font-style:normal}
-.hcta{display:flex;flex-direction:column;gap:.8rem;align-items:flex-end}
-.btn-p{font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:.25em;text-transform:uppercase;background:var(--white);color:var(--black);padding:.7rem 2rem;font-weight:700;transition:all .2s;cursor:pointer;border:none}
-.btn-p:hover{background:var(--muted)}
-.btn-g{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid #333;padding:.55rem 1.5rem;color:var(--muted);transition:all .2s;cursor:pointer;background:none}
-.btn-g:hover{border-color:var(--white);color:var(--white)}
+.hrow{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:2rem}
+.hslogan{font-family:'Barlow',sans-serif;font-size:1.1rem;color:rgba(255,255,255,.8);max-width:450px;line-height:1.6}
+.hcta{display:flex;flex-direction:row;gap:1rem;align-items:center;flex-wrap:wrap}
+.btn-p{font-family:'Barlow Condensed',sans-serif;font-size:.9rem;letter-spacing:.25em;text-transform:uppercase;background:var(--white);color:var(--black);padding:.9rem 2.5rem;font-weight:700;transition:all .3s ease;cursor:pointer;border:none}
+.btn-p:hover{background:var(--muted);color:var(--white)}
+.btn-g{font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.3);padding:.8rem 2.2rem;color:var(--white);transition:all .3s ease;cursor:pointer;background:rgba(0,0,0,0.3);backdrop-filter:blur(5px)}
+.btn-g:hover{border-color:var(--white);background:rgba(255,255,255,0.1)}
 
 /* TICKER */
 .ticker{background:var(--white);color:var(--black);padding:.6rem 0;overflow:hidden;white-space:nowrap}
@@ -63,10 +62,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* DROPS ÉPICO */
-.drops{padding:6rem 2.5rem;border-bottom:1px solid #1f1f1f;display:flex;gap:5rem;align-items:center;flex-wrap:wrap;background: radial-gradient(circle at center right, rgba(192,57,43,0.05) 0%, transparent 50%)}
+.drops{padding:6rem 2.5rem;border-bottom:1px solid var(--gray3);display:flex;gap:5rem;align-items:center;flex-wrap:wrap;background: radial-gradient(circle at center right, rgba(255,26,26,0.05) 0%, transparent 50%)}
 .drops-lbl{writing-mode:vertical-rl;text-orientation:mixed;font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);transform:rotate(180deg);flex-shrink:0}
 .drops-content{flex:1;min-width:280px;z-index:2}
-.dbadge{display:inline-block;background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:1.5rem;font-weight:700;box-shadow:0 0 15px rgba(192,57,43,.4)}
+.dbadge{display:inline-block;background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:1.5rem;font-weight:700;box-shadow:0 0 15px rgba(255,26,26,.4)}
 .dtitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,8vw,7rem);line-height:.9;margin-bottom:1.5rem}
 .dtitle .ol{-webkit-text-stroke:1px var(--white);color:transparent}
 .ddesc{font-size:1rem;color:var(--muted);max-width:480px;line-height:1.7;margin-bottom:2.5rem}
@@ -75,15 +74,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .citem .cnum{font-family:'Bebas Neue',sans-serif;font-size:3rem;display:block;line-height:1;color:var(--white);text-shadow: 0 0 10px rgba(255,255,255,0.2)}
 .citem .clbl{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:.2em;color:var(--red);text-transform:uppercase;font-weight:700}
 /* Estilo impactante para la imagen del Drop */
-.dvisual-epic{width:420px;flex-shrink:0;border:1px solid var(--red);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;background:var(--gray);position:relative;box-shadow:0 0 40px rgba(192,57,43,.3), inset 0 0 20px rgba(192,57,43,.1);transition:transform .4s ease, box-shadow .4s ease;animation:floatImage 6s ease-in-out infinite;z-index:1}
-.dvisual-epic:hover{transform:scale(1.02);box-shadow:0 0 60px rgba(192,57,43,.5), inset 0 0 30px rgba(192,57,43,.2)}
+.dvisual-epic{width:420px;flex-shrink:0;border:1px solid var(--red);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;background:var(--gray);position:relative;box-shadow:0 0 40px rgba(255,26,26,.3), inset 0 0 20px rgba(255,26,26,.1);transition:transform .4s ease, box-shadow .4s ease;animation:floatImage 6s ease-in-out infinite;z-index:1}
+.dvisual-epic:hover{transform:scale(1.02);box-shadow:0 0 60px rgba(255,26,26,.5), inset 0 0 30px rgba(255,26,26,.2)}
 .dvisual-epic img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 .epic-badge{position:absolute;top:-15px;right:-15px;background:var(--red);color:var(--white);font-family:'Bebas Neue',sans-serif;font-size:1.8rem;padding:.5rem 1.2rem;letter-spacing:.1em;transform:rotate(12deg);box-shadow:0 5px 15px rgba(0,0,0,.6);z-index:10;animation:pulseRed 2s infinite}
 @keyframes floatImage{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
 @keyframes pulseRed{0%{transform:rotate(12deg) scale(1)}50%{transform:rotate(12deg) scale(1.1)}100%{transform:rotate(12deg) scale(1)}}
 
 /* PRODUCTS */
-.products-section{padding:5rem 2.5rem;border-bottom:1px solid #1f1f1f}
+.products-section{padding:5rem 2.5rem;border-bottom:1px solid var(--gray3)}
 .sec-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:2.5rem}
 .sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:.05em}
 .sec-link{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--gray4);padding-bottom:2px}
@@ -94,22 +93,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .fbtn.active{background:var(--white);color:var(--black)}
 
 /* Mejora de espaciado en la grilla de productos */
-.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:2rem;justify-items:center}
-.pcard{background:var(--black);position:relative;overflow:hidden;transition:transform .2s;border:1px solid var(--gray3);max-width:420px;width:100%}
-.pcard:hover{transform:translateY(-5px);border-color:var(--gray4)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:3rem;justify-items:center}
+.pcard{background:var(--black);position:relative;overflow:hidden;transition:all .3s ease;border:1px solid var(--gray3);max-width:420px;width:100%}
+.pcard:hover{transform:translateY(-8px);border-color:var(--gray4);box-shadow:0 15px 35px rgba(0,0,0,.5)}
 
 .pcard.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease, transform .65s ease}
 .pcard.reveal.visible{opacity:1;transform:translateY(0)}
 
 .pcard-img{aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:none;cursor:pointer}
-.pcard-img img{width:100%;height:100%;object-fit:contain;object-position:center;transition:transform .4s ease, filter .4s ease;display:block}
+.pcard-img img{width:100%;height:100%;object-fit:contain;object-position:center;transition:transform .5s ease, filter .5s ease;display:block}
 .pcard:hover .pcard-img img{transform:scale(1.05);filter:brightness(0.9)}
 
 .pbadge{position:absolute;top:1rem;left:1rem;font-family:'Barlow Condensed',sans-serif;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;padding:.2rem .6rem;font-weight:700;z-index:2}
 .b-new{background:var(--white);color:var(--black)}
 .b-drop{background:var(--red);color:var(--white)}
 .b-best{background:var(--gray4);color:var(--white)}
-.pinfo{padding:1.5rem 1.2rem 4rem}
+.pinfo{padding:1.5rem 1.2rem 2rem}
 .pname{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:.3rem;cursor:pointer;transition:color .2s}
 .pname:hover{color:var(--muted)}
 .psub{font-size:.8rem;color:var(--muted);margin-bottom:1.2rem}
@@ -119,11 +118,36 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .psizes{display:flex;gap:.3rem}
 .sdot{width:26px;height:26px;display:flex;align-items:center;justify-content:center;border:1px solid var(--gray4);font-family:'Barlow Condensed',sans-serif;font-size:.65rem;color:var(--muted);transition:all .15s;cursor:pointer}
 .sdot:hover,.sdot.sel{border-color:var(--white);background:var(--white);color:var(--black)}
-.padd{position:absolute;bottom:0;left:0;right:0;background:var(--white);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:.8rem;text-align:center;transform:translateY(100%);transition:transform .3s ease;cursor:pointer;border:none;z-index:3}
-.pcard:hover .padd{transform:translateY(0)}
+.padd{width:100%;background:var(--white);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:1rem;text-align:center;transition:background .3s ease, color .3s ease;cursor:pointer;border:none;display:block}
+.padd:hover{background:var(--muted);color:var(--white)}
+
+/* WISHLIST */
+.pwish{position:absolute;top:1rem;right:1rem;background:rgba(var(--bg-rgb),0.5);color:var(--white);border:1px solid var(--gray4);border-radius:50%;width:35px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:all .2s;font-size:1.2rem;line-height:1;backdrop-filter:blur(3px)}
+.pwish:hover{background:var(--white);color:var(--red);border-color:var(--white)}
+.pwish.active{background:var(--white);color:var(--red);border-color:var(--white)}
+
+/* REVIEWS */
+.reviews{padding:5rem 2.5rem;border-bottom:1px solid var(--gray3);background:var(--black)}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:1rem}
+.rev-card{background:var(--gray2);border:1px solid var(--gray3);padding:2rem;border-radius:12px;display:flex;flex-direction:column;gap:1rem;transition:transform .3s}
+.rev-card:hover{transform:translateY(-5px);border-color:var(--gray4)}
+.rev-stars{color:#f39c12;font-size:1.2rem;letter-spacing:0.1em}
+.rev-text{color:var(--muted);font-size:0.95rem;line-height:1.6;font-style:italic}
+.rev-author{display:flex;align-items:center;gap:1rem;margin-top:auto}
+.rev-avatar{width:40px;height:40px;border-radius:50%;background:var(--gray4);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);color:var(--white);font-size:1.1rem;letter-spacing:0}
+.rev-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;font-size:0.9rem;color:var(--white)}
+.rev-date{font-size:0.75rem;color:var(--gray4)}
+
+/* URGENCIA */
+.p-urgency{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;margin-top:.8rem;font-weight:700;display:flex;align-items:center;gap:.4rem}
+.prod-timer{font-variant-numeric:tabular-nums; background:rgba(255,26,26,0.15); padding:0.1rem 0.3rem; border-radius:3px; letter-spacing:0.1em;}
+.u-red{color:var(--red)}
+.u-orange{color:#f39c12}
+.u-pulse{animation:pulseUrg 2s infinite}
+@keyframes pulseUrg{0%,100%{opacity:1}50%{opacity:.6}}
 
 /* STATEMENT */
-.statement{padding:6rem 2.5rem;border-bottom:1px solid #1f1f1f;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.statement{padding:6rem 2.5rem;border-bottom:1px solid var(--gray3);display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
 .stmt-q{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;letter-spacing:.02em}
 .stmt-q .ol{-webkit-text-stroke:1px var(--white);color:transparent}
 .stmt-b{color:var(--muted);font-size:.95rem;line-height:1.8}
@@ -134,15 +158,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .vitem::before{content:'';width:20px;height:1px;background:var(--gray4);flex-shrink:0}
 
 /* COLECCIONES INTERACTIVAS */
-.collections{padding:5rem 2.5rem;border-bottom:1px solid #1f1f1f}
+.collections{padding:5rem 2.5rem;border-bottom:1px solid var(--gray3)}
 .cgrid{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:auto auto;gap:1.5rem}
 .ccard{background:var(--black);padding:3rem;display:flex;flex-direction:column;justify-content:flex-end;min-height:280px;position:relative;overflow:hidden;cursor:pointer;border:1px solid var(--gray3)}
 .ccard.feat{grid-row:span 2;min-height:480px}
 .cbg{position:absolute;inset:0;z-index:0}
-.cbg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.2) 100%);z-index:1;transition:background .3s}
+.cbg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top, rgba(var(--bg-rgb),0.95) 0%, rgba(var(--bg-rgb),0.2) 100%);z-index:1;transition:background .3s}
 .col-img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.4,0,.2,1);filter:brightness(0.7)}
 .ccard:hover .col-img{transform:scale(1.08);filter:brightness(1)}
-.ccard:hover .cbg::after{background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 100%)}
+.ccard:hover .cbg::after{background:linear-gradient(to top, rgba(var(--bg-rgb),0.85) 0%, rgba(var(--bg-rgb),0.1) 100%)}
 .ctag{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--white);margin-bottom:.5rem;position:relative;z-index:2;text-shadow:0 2px 4px rgba(0,0,0,.5)}
 .cname{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;position:relative;z-index:2;margin-bottom:.3rem;color:var(--white)}
 .ccount{font-size:.85rem;color:var(--muted);position:relative;z-index:2}
@@ -150,7 +174,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .ccard:hover::after{opacity:1;transform:translateX(0)}
 
 /* WHY */
-.why{padding:5rem 2.5rem;border-bottom:1px solid #1f1f1f}
+.why{padding:5rem 2.5rem;border-bottom:1px solid var(--gray3)}
 .wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gray3);margin-top:3rem}
 .witem{background:var(--black);padding:2.5rem 2rem}
 .wnum{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--gray3);line-height:1;margin-bottom:1rem}
@@ -158,7 +182,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .wdesc{font-size:.85rem;color:var(--muted);line-height:1.7}
 
 /* NEWSLETTER */
-.newsletter{padding:5rem 2.5rem;border-bottom:1px solid #1f1f1f;display:flex;gap:4rem;align-items:center;flex-wrap:wrap}
+.newsletter{padding:5rem 2.5rem;border-bottom:1px solid var(--gray3);display:flex;gap:4rem;align-items:center;flex-wrap:wrap}
 .nl-t{flex:1;min-width:250px}
 .nl-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);margin-bottom:.8rem}
 .nl-sub{color:var(--muted);font-size:.9rem;line-height:1.6;max-width:360px}
@@ -170,7 +194,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nlbtn:hover{background:var(--muted)}
 
 /* CONTACT */
-.contact{padding:5rem 2.5rem;border-bottom:1px solid #1f1f1f;background:linear-gradient(180deg, rgba(8,8,8,.95) 0%, rgba(8,8,8,.98) 100%)}
+.contact{padding:5rem 2.5rem;border-bottom:1px solid var(--gray3);background:linear-gradient(180deg, rgba(var(--bg-rgb),.95) 0%, rgba(var(--bg-rgb),.98) 100%)}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
 .contact-info{max-width:520px}
 .contact-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);margin-bottom:1rem}
@@ -182,7 +206,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .contact-box p{color:var(--muted);line-height:1.8}
 
 /* ENVIOS */
-.shipping{padding:5rem 2.5rem;border-bottom:1px solid #1f1f1f;background:radial-gradient(circle at top left, rgba(192,57,43,0.08), transparent 45%)}
+.shipping{padding:5rem 2.5rem;border-bottom:1px solid var(--gray3);background:radial-gradient(circle at top left, rgba(192,57,43,0.08), transparent 45%)}
 .shipping .sec-header{margin-bottom:2.5rem}
 .shipping-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
 .shipping-info{max-width:520px}
@@ -204,7 +228,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .quote-result{margin-top:1.5rem;padding:1rem 1.1rem;background:rgba(255,255,255,.05);border:1px solid var(--gray3);border-radius:12px;color:var(--white);font-family:'Bebas Neue',sans-serif}
 
 /* GUÍA DE TALLAS */
-.size-guide{padding:5rem 2.5rem;border-bottom:1px solid #1f1f1f}
+.size-guide{padding:5rem 2.5rem;border-bottom:1px solid var(--gray3)}
 .size-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
 .size-info{max-width:520px}
 .size-info p{color:var(--muted);font-size:1rem;line-height:1.8;margin-bottom:2rem}
@@ -217,7 +241,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .size-note{font-size:.85rem;color:var(--muted);margin-top:1rem}
 
 /* DEVOLUCIONES */
-.returns{padding:5rem 2.5rem;border-bottom:1px solid #1f1f1f;background:linear-gradient(180deg, rgba(8,8,8,.96) 0%, rgba(8,8,8,.98) 100%)}
+.returns{padding:5rem 2.5rem;border-bottom:1px solid var(--gray3);background:linear-gradient(180deg, rgba(var(--bg-rgb),.96) 0%, rgba(var(--bg-rgb),.98) 100%)}
 .returns-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
 .returns-info{max-width:520px}
 .returns-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);margin-bottom:1rem}
@@ -229,7 +253,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .returns-note{font-size:.85rem;color:var(--muted);margin-top:1rem}
 
 /* FOOTER */
-footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+footer{padding:4rem 2.5rem 2rem; border-top: 1px solid var(--gray3);}
+.footer-top{display:flex;gap:4rem;align-items:center;flex-wrap:wrap;padding-bottom:3rem;border-bottom:1px solid var(--gray3);margin-bottom:2rem}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
 .fbrand{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.12em}
 .fbrand span{font-family:'Barlow Condensed',sans-serif;font-size:.65rem;letter-spacing:.25em;color:var(--muted);display:block}
 .flinks{display:flex;gap:2rem;flex-wrap:wrap}
@@ -238,11 +264,11 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
 .fcopy{font-size:.75rem;color:var(--gray4)}
 
 /* CART SIDEBAR */
-.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(3px)}
+.cart-overlay{position:fixed;inset:0;background:rgba(var(--bg-rgb),.7);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(3px)}
 .cart-overlay.open{opacity:1;pointer-events:all}
-.cart-sidebar{position:fixed;top:0;right:0;bottom:0;width:380px;max-width:95vw;background:var(--gray);z-index:301;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;border-left:1px solid #2a2a2a}
+.cart-sidebar{position:fixed;top:0;right:0;bottom:0;width:380px;max-width:95vw;background:var(--gray);z-index:301;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;border-left:1px solid var(--gray3)}
 .cart-sidebar.open{transform:translateX(0)}
-.cart-head{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 1.5rem 1rem;border-bottom:1px solid #2a2a2a}
+.cart-head{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 1.5rem 1rem;border-bottom:1px solid var(--gray3)}
 .cart-head h2{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.1em}
 .cart-close{background:none;border:none;color:var(--white);font-size:1.4rem;cursor:pointer;line-height:1;padding:.2rem .5rem;transition:color .2s}
 .cart-close:hover{color:var(--muted)}
@@ -251,7 +277,7 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
 .cart-items::-webkit-scrollbar-thumb{background:var(--gray4)}
 .cart-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--muted);font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase;font-size:.85rem;gap:.8rem}
 .cart-empty .ei{font-size:3rem;opacity:.3}
-.cart-item{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid #2a2a2a;align-items:center}
+.cart-item{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--gray3);align-items:center}
 .cart-item-img{width:64px;height:80px;object-fit:cover;background:var(--gray2);flex-shrink:0;border:1px solid var(--gray3)}
 .cart-item-info{flex:1}
 .cart-item-name{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:.2rem}
@@ -263,14 +289,14 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
 .qty-btn{background:var(--gray3);border:none;color:var(--white);width:22px;height:22px;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .qty-btn:hover{background:var(--gray4)}
 .qty-val{font-family:'Barlow Condensed',sans-serif;font-size:.9rem;min-width:20px;text-align:center}
-.cart-foot{padding:1.2rem 1.5rem;border-top:1px solid #2a2a2a;background:var(--gray)}
+.cart-foot{padding:1.2rem 1.5rem;border-top:1px solid var(--gray3);background:var(--gray)}
 .cart-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1rem}
 .cart-total-lbl{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
 .cart-total-val{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.05em}
 .cart-checkout{width:100%;background:var(--white);color:var(--black);border:none;padding:1rem;font-family:'Barlow Condensed',sans-serif;font-size:.9rem;letter-spacing:.25em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:background .2s}
 .cart-checkout:hover{background:var(--muted)}
 
-.checkout-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:450;opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;overflow-y:auto;padding:2rem}
+.checkout-overlay{position:fixed;inset:0;background:rgba(var(--bg-rgb),.85);z-index:450;opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;overflow-y:auto;padding:2rem}
 .checkout-overlay.open{opacity:1;pointer-events:all}
 .checkout-modal{background:var(--black);border:1px solid var(--gray3);border-radius:20px;width:100%;max-width:900px;padding:2rem;position:relative;box-shadow:0 30px 60px rgba(0,0,0,.6)}
 .checkout-close{position:absolute;top:1rem;right:1rem;background:var(--gray3);border:none;color:var(--white);width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;transition:background .2s}
@@ -291,7 +317,7 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
 .checkout-result{margin-top:1.5rem;padding:1.2rem 1.3rem;background:rgba(255,255,255,.05);border:1px solid var(--gray3);border-radius:14px;color:var(--white);font-family:'Barlow',sans-serif;line-height:1.7}
 
 /* MODAL DEL PRODUCTO */
-.pmodal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:400;opacity:0;pointer-events:none;transition:opacity .3s ease;backdrop-filter:blur(5px)}
+.pmodal-overlay{position:fixed;inset:0;background:rgba(var(--bg-rgb),.85);z-index:400;opacity:0;pointer-events:none;transition:opacity .3s ease;backdrop-filter:blur(5px)}
 .pmodal-overlay.open{opacity:1;pointer-events:all}
 .pmodal{position:fixed;top:50%;left:50%;transform:translate(-50%,-45%);background:var(--black);border:1px solid var(--gray3);z-index:401;width:90%;max-width:850px;display:flex;opacity:0;pointer-events:none;transition:all .4s cubic-bezier(.4,0,.2,1);box-shadow:0 30px 60px rgba(0,0,0,.6)}
 .pmodal.open{opacity:1;pointer-events:all;transform:translate(-50%,-50%)}
@@ -314,7 +340,7 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
 .zoom-btn:hover{background:var(--gray4)}
 
 /* ZOOM */
-.zoom-overlay{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:500;opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center}
+.zoom-overlay{position:fixed;inset:0;background:rgba(var(--bg-rgb),.9);z-index:500;opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center}
 .zoom-overlay.open{opacity:1;pointer-events:all}
 #zoom-img{max-width:90%;max-height:90%;object-fit:contain}
 .zoom-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.2);border:none;color:white;width:40px;height:40px;border-radius:50%;font-size:1.2rem;cursor:pointer}
@@ -331,7 +357,9 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
 @media(max-width:768px){
   nav{padding:.8rem 1.2rem}
   .nav-links{display:none}
-  .hero{padding:0 1.2rem 3rem}
+  .hero{padding:6rem 1.2rem 3rem;justify-content:flex-end}
+  .hcta{flex-direction:column;align-items:stretch;width:100%}
+  .btn-p,.btn-g{width:100%;text-align:center}
   .htitle{font-size:clamp(3.5rem,16vw,7rem)}
   .drops,.products-section,.collections,.why,.newsletter,.statement{padding:3rem 1.2rem}
   .drops{flex-direction:column;gap:3rem}
@@ -342,8 +370,9 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
   .wgrid{grid-template-columns:1fr}
   .newsletter{flex-direction:column;gap:2rem}
   .nlform{width:100%}
-  footer{flex-direction:column;align-items:flex-start;gap:1.5rem}
+  .footer-top{flex-direction:column;gap:2rem;text-align:center}
   .modal-content{flex-direction:column}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:1.5rem}
   .pmodal{max-height:90vh;overflow-y:auto}
   .modal-img-container{aspect-ratio:1/1}
   .modal-info{padding:2rem 1.5rem}
@@ -395,13 +424,13 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
             <input type="email" id="checkout-email" placeholder="correo@dominio.com" required>
           </label>
           <label>Dirección de envío
-            <input type="text" id="checkout-address" placeholder="Calle, número, colonia" required>
+            <input type="text" id="checkout-address" placeholder="Calle, número, colonia" required oninput="updateCheckoutSummary()">
           </label>
           <label>Ciudad o municipio
             <input type="text" id="checkout-city" placeholder="Ej. Aguascalientes" required>
           </label>
           <label>Estado
-            <select id="checkout-state" required>
+            <select id="checkout-state" required onchange="updateCheckoutSummary()">
               <option value="">Selecciona un estado</option>
               <option>Aguascalientes</option>
               <option>Jalisco</option>
@@ -427,12 +456,24 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
         <div class="summary-card">
           <h3>Resumen del pedido</h3>
           <div id="checkout-items"></div>
-          <div class="summary-row"><span>Total</span><strong id="checkout-total">$0 MXN</strong></div>
+          <div class="summary-row" style="padding-bottom:0;"><span>Subtotal</span><strong id="checkout-subtotal">$0 MXN</strong></div>
+          <div class="summary-row" style="margin-top:.5rem; border-top:none; padding-top:0;"><span>Envío estimado</span><strong id="checkout-shipping" style="color:var(--muted); font-size:1.1rem;">Por calcular</strong></div>
+          <div class="summary-row"><span>Total final</span><strong id="checkout-final-total" style="color:var(--red);">$0 MXN</strong></div>
           <div class="summary-note">Al enviar tus datos, se generará un ticket de compra y recibirás la información por correo electrónico.</div>
         </div>
       </div>
     </div>
     <div class="checkout-result" id="checkout-result"></div>
+  </div>
+</div>
+
+<!-- LEGAL OVERLAY -->
+<div class="checkout-overlay" id="legal-overlay" onclick="closeLegalModal(event)">
+  <div class="checkout-modal" onclick="event.stopPropagation()" style="max-width:800px; max-height:85vh; overflow-y:auto; padding-bottom:3rem;">
+    <button class="checkout-close" onclick="closeLegalModal(event)">✕</button>
+    <h2 id="legal-title" style="margin-bottom:1.5rem;">Título Legal</h2>
+    <div id="legal-content" style="color:var(--muted); line-height:1.8; font-size:0.95rem;">
+    </div>
   </div>
 </div>
 
@@ -452,6 +493,14 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
       <p class="modal-sub" id="modal-sub">Subtítulo</p>
       <p class="modal-price" id="modal-price"></p>
       <div class="modal-sizes" id="modal-sizes"></div>
+      <div class="modal-qty-container" style="display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem;">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Cantidad:</span>
+        <div class="modal-qty" style="display:flex;align-items:center;gap:.5rem;">
+          <button class="qty-btn" onclick="chgModalQty(-1)">-</button>
+          <span class="qty-val" id="modal-qty-val">1</span>
+          <button class="qty-btn" onclick="chgModalQty(1)">+</button>
+        </div>
+      </div>
       <button class="zoom-btn" onclick="openZoom(document.getElementById('modal-img').src)">🔍 Zoom</button>
       <button class="modal-add-btn" onclick="addFromModal()">Agregar al Carrito</button>
     </div>
@@ -487,29 +536,32 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
     <li><a href="#productos">Productos</a></li>
     <li><a href="#colecciones">Colecciones</a></li>
     <li><a href="#drops">Drops</a></li>
+    <li><a href="#resenas">Reseñas</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
   </ul>
-  <button class="nav-cart" id="cart-btn" onclick="openCart()">Carrito (0)</button>
+  <div style="display:flex; gap:1rem;">
+    <button class="nav-cart" id="wishlist-nav" onclick="showWishlist()"><span style="color:var(--red)">♥</span> (0)</button>
+    <button class="nav-cart" id="cart-btn" onclick="openCart()">Carrito (0)</button>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-star">
-    <img src="logo-nova.png" alt="Nova Streetwerr Logo">
+  <div class="hero-bg">
+    <img src="hero-model.jpg" alt="Modelo Nova Streetwear">
   </div>
-  <p class="htag">Aguascalientes, México — Colección 2026</p>
-  <h1 class="htitle">
-    <span class="ol">NOV</span>A<br>
-    STREET<span class="ol">WEAR</span>
-  </h1>
-  <div class="hrow">
-    <p class="hslogan">
-      <strong>"PORQUE YA ESTABAS AHI,<br>SOLO FALTABA QUE TE VIERAN."</strong>
-    </p>
-    <div class="hcta">
-      <a href="#productos"><button class="btn-p">Ver colección</button></a>
-      <a href="#drops"><button class="btn-g">Próximo drop →</button></a>
+  <div class="hero-content">
+    <p class="htag">⚡ Drop 01 — Disponible ahora</p>
+    <h1 class="htitle">
+      BUILT FOR<br>
+      <span class="ol">THE STREETS</span>
+    </h1>
+    <div class="hrow">
+      <p class="hslogan">Siluetas oversize, cortes premium y diseño limpio. No seguimos tendencias temporales, imponemos nuestro propio ritmo.</p>
+      <div class="hcta">
+        <a href="#productos"><button class="btn-p">Comprar Ahora</button></a>
+        <a href="#drops"><button class="btn-g">Ver Próximo Drop →</button></a>
+      </div>
     </div>
   </div>
 </section>
@@ -543,12 +595,23 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
       Una vez que se acaba — se acabó. Así es como funciona Nova.
     </p>
     <div class="dcounter">
-      <div class="citem"><span class="cnum" id="cd">03</span><span class="clbl">Días</span></div>
-      <div class="citem"><span class="cnum" id="ch">14</span><span class="clbl">Horas</span></div>
-      <div class="citem"><span class="cnum" id="cm">27</span><span class="clbl">Min</span></div>
-      <div class="citem"><span class="cnum" id="cs">00</span><span class="clbl">Seg</span></div>
+      <div class="citem"><span class="cnum">00</span><span class="clbl">Días</span></div>
+      <div class="citem"><span class="cnum">00</span><span class="clbl">Horas</span></div>
+      <div class="citem"><span class="cnum">00</span><span class="clbl">Min</span></div>
+      <div class="citem"><span class="cnum">00</span><span class="clbl">Seg</span></div>
     </div>
-    <button class="btn-p" style="cursor:pointer; box-shadow: 0 4px 15px rgba(242, 237, 232, 0.2);">Notifícame del drop</button>
+
+    <div class="drop-stock-container" style="margin-bottom: 2rem; background: rgba(255,26,26,0.08); border: 1px solid rgba(255,26,26,0.4); padding: 1.2rem 1.5rem; border-radius: 8px; display: inline-block; animation: pulseUrg 2s infinite;">
+      <p style="font-family: var(--font-body); font-weight: 700; font-size: 1.1rem; color: var(--white); margin: 0; letter-spacing: 0.05em; text-transform: uppercase;">
+        🔥 ¡Rápido! Solo quedan <span id="drop-stock" style="font-family: var(--font-head); font-size: 1.8rem; color: var(--red); vertical-align: middle; padding: 0 0.3rem;">1500</span> unidades. ¡Compra ya!
+      </p>
+      <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); margin-top: 1rem; border-radius: 3px; overflow: hidden;">
+        <div id="drop-stock-bar" style="height: 100%; background: var(--red); width: 100%; transition: width 0.5s ease;"></div>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-head); font-size:2.2rem; color:var(--red); margin-bottom:1.5rem; letter-spacing:0.05em; text-shadow: 0 0 15px rgba(255,26,26,0.6);">¡YA DISPONIBLE!</h3>
+    <a href="#productos"><button class="btn-p" style="cursor:pointer; box-shadow: 0 4px 15px rgba(242, 237, 232, 0.2);">Comprar ahora</button></a>
   </div>
   <div class="dvisual-epic">
     <div class="epic-badge">NUEVO DROP</div>
@@ -567,6 +630,7 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
     <button class="fbtn" onclick="filt('playeras',this)">Playeras</button>
     <button class="fbtn" onclick="filt('hoodies',this)">Hoodies</button>
     <button class="fbtn" onclick="filt('accesorios',this)">Accesorios</button>
+    <button class="fbtn" id="f-wish" onclick="filt('wishlist',this)" style="margin-left:auto; color:var(--red); border-color:rgba(255,26,26,0.3)">Lista de Deseos ♥</button>
   </div>
   
   <div class="pgrid" id="pgrid">
@@ -583,6 +647,7 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
           <span class="pprice"><span class="cur">$</span>450 <small style="font-size:.65rem;color:var(--muted);font-family:'Barlow Condensed'">MXN</small></span>
           <div class="psizes"><span class="sdot sel">S</span><span class="sdot">M</span><span class="sdot">L</span><span class="sdot">XL</span></div>
         </div>
+      <div class="p-urgency u-red u-pulse">🔥 Solo 3 disponibles</div>
       </div>
       <button class="padd" onclick="addCart(this, event)">+ Agregar</button>
     </div>
@@ -599,6 +664,7 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
           <span class="pprice"><span class="cur">$</span>480 <small style="font-size:.65rem;color:var(--muted);font-family:'Barlow Condensed'">MXN</small></span>
           <div class="psizes"><span class="sdot sel">S</span><span class="sdot">M</span><span class="sdot">L</span><span class="sdot">XL</span></div>
         </div>
+      <div class="p-urgency u-orange">⚡ Stock limitado</div>
       </div>
       <button class="padd" onclick="addCart(this, event)">+ Agregar</button>
     </div>
@@ -615,6 +681,7 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
           <span class="pprice"><span class="cur">$</span>520 <small style="font-size:.65rem;color:var(--muted);font-family:'Barlow Condensed'">MXN</small></span>
           <div class="psizes"><span class="sdot sel">M</span><span class="sdot">L</span><span class="sdot">XL</span></div>
         </div>
+      <div class="p-urgency u-red">⏳ Termina en: <span class="prod-timer" data-time="86400000">24:00:00</span></div>
       </div>
       <button class="padd" onclick="addCart(this, event)">+ Agregar</button>
     </div>
@@ -630,6 +697,24 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
           <span class="pprice"><span class="cur">$</span>580 <small style="font-size:.65rem;color:var(--muted);font-family:'Barlow Condensed'">MXN</small></span>
           <div class="psizes"><span class="sdot sel">S</span><span class="sdot">M</span><span class="sdot">L</span></div>
         </div>
+      <div class="p-urgency u-orange">⚡ Últimas piezas</div>
+      </div>
+      <button class="padd" onclick="addCart(this, event)">+ Agregar</button>
+    </div>
+
+    <div class="pcard" data-cat="hoodies" data-name="Nova Star Pack Hoodie" data-price="1150" data-img="Drop%20proximo.png">
+      <div class="pcard-img" onclick="openModal(this.closest('.pcard'))">
+        <img src="Drop%20proximo.png" alt="Nova Star Pack Hoodie" loading="lazy">
+        <span class="pbadge b-drop">Nuevo Drop</span>
+      </div>
+      <div class="pinfo">
+        <p class="pname" onclick="openModal(this.closest('.pcard'))">Nova Star Pack Hoodie</p>
+        <p class="psub">Sudadera · Edición Limitada</p>
+        <div class="pbot">
+          <span class="pprice"><span class="cur">$</span>1150 <small style="font-size:.65rem;color:var(--muted);font-family:'Barlow Condensed'">MXN</small></span>
+          <div class="psizes"><span class="sdot sel">S</span><span class="sdot">M</span><span class="sdot">L</span><span class="sdot">XL</span></div>
+        </div>
+      <div class="p-urgency u-red u-pulse">🔥 ¡Recién lanzado!</div>
       </div>
       <button class="padd" onclick="addCart(this, event)">+ Agregar</button>
     </div>
@@ -646,6 +731,7 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
           <span class="pprice"><span class="cur">$</span>850 <small style="font-size:.65rem;color:var(--muted);font-family:'Barlow Condensed'">MXN</small></span>
           <div class="psizes"><span class="sdot sel">S</span><span class="sdot">M</span><span class="sdot">L</span><span class="sdot">XL</span></div>
         </div>
+      <div class="p-urgency u-red u-pulse">🔥 Solo 2 disponibles</div>
       </div>
       <button class="padd" onclick="addCart(this, event)">+ Agregar</button>
     </div>
@@ -662,6 +748,7 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
           <span class="pprice"><span class="cur">$</span>900 <small style="font-size:.65rem;color:var(--muted);font-family:'Barlow Condensed'">MXN</small></span>
           <div class="psizes"><span class="sdot sel">S</span><span class="sdot">M</span><span class="sdot">L</span><span class="sdot">XL</span></div>
         </div>
+      <div class="p-urgency u-orange">⚡ Alta demanda</div>
       </div>
       <button class="padd" onclick="addCart(this, event)">+ Agregar</button>
     </div>
@@ -678,6 +765,7 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
           <span class="pprice"><span class="cur">$</span>980 <small style="font-size:.65rem;color:var(--muted);font-family:'Barlow Condensed'">MXN</small></span>
           <div class="psizes"><span class="sdot sel">M</span><span class="sdot">L</span></div>
         </div>
+      <div class="p-urgency u-red">⏳ Termina en: <span class="prod-timer" data-time="18000000">05:00:00</span></div>
       </div>
       <button class="padd" onclick="addCart(this, event)">+ Agregar</button>
     </div>
@@ -694,6 +782,7 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
           <span class="pprice"><span class="cur">$</span>320 <small style="font-size:.65rem;color:var(--muted);font-family:'Barlow Condensed'">MXN</small></span>
           <div class="psizes"><span class="sdot sel">U</span></div>
         </div>
+      <div class="p-urgency u-orange">⚡ Stock limitado</div>
       </div>
       <button class="padd" onclick="addCart(this, event)">+ Agregar</button>
     </div>
@@ -701,23 +790,65 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
   </div>
 </section>
 
+<!-- RESEÑAS -->
+<section class="reviews reveal" id="resenas">
+  <div class="sec-header">
+    <h2 class="sec-title">Reseñas de clientes</h2>
+  </div>
+  <div class="rev-grid">
+    <div class="rev-card">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">"La calidad de la Nova Classic Oversize es brutal. La tela es súper pesada y el fit es perfecto. Ya quiero que salga el próximo drop."</p>
+      <div class="rev-author">
+        <div class="rev-avatar">M</div>
+        <div>
+          <div class="rev-name">Mateo G.</div>
+          <div class="rev-date">Hace 2 días · Compra verificada</div>
+        </div>
+      </div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">"Logré alcanzar la Nova Core Hoodie antes de que se agotara. Se nota que no escatiman en la calidad, los detalles están muy bien cuidados."</p>
+      <div class="rev-author">
+        <div class="rev-avatar">S</div>
+        <div>
+          <div class="rev-name">Sofía R.</div>
+          <div class="rev-date">Hace 1 semana · Compra verificada</div>
+        </div>
+      </div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-stars">★★★★☆</div>
+      <p class="rev-text">"El envío fue muy rápido a CDMX. La playera Nocturna tiene un lavado increíble, aunque me hubiera gustado que el cuello fuera más cerrado."</p>
+      <div class="rev-author">
+        <div class="rev-avatar">D</div>
+        <div>
+          <div class="rev-name">Diego A.</div>
+          <div class="rev-date">Hace 2 semanas · Compra verificada</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- STATEMENT -->
 <section class="statement reveal" id="nosotros">
   <h2 class="stmt-q">
-    MÁS QUE<br>
+    NOVA NO ES<br>
     <span class="ol">ROPA,</span><br>
-    UNA FORMA<br>
-    DE BRILLAR.
+    ES UNA<br>
+    MENTALIDAD.
   </h2>
   <div class="stmt-b">
-    <p><strong>NOVA</strong> nace en Aguascalientes con una idea clara: los jóvenes merecen ropa que los represente de verdad. Sin exagerar, pero con carácter y estilo propio.</p>
-    <p>En un estado dominado por la industria automotriz, construimos algo diferente — streetwear que combina <strong>comodidad, modernidad y diseño limpio</strong>, pensado para el uso diario.</p>
-    <p>No vendemos tendencias efímeras. Vendemos identidad. Porque ya estabas ahí — solo faltaba que te vieran.</p>
+    <p><strong>NUESTRA VISIÓN:</strong> Redefinir el streetwear mexicano. No buscamos encajar en moldes; creamos piezas con carácter, lujo minimalista y una estética urbana cruda que habla por sí sola.</p>
+    <p>Nacidos en las calles de Aguascalientes, combinamos siluetas oversize, cortes premium y diseños limpios pensados para el uso diario. No seguimos tendencias temporales, imponemos nuestro propio ritmo.</p>
+    <p>Cada drop de <strong>NOVA</strong> es una declaración de intenciones. Porque al final no se trata solo de lo que llevas puesto, se trata de la actitud con la que caminas por el mundo.</p>
     <div class="vals">
-      <span class="vitem">Orgullo</span>
-      <span class="vitem">Honestidad — sé tú mismo</span>
-      <span class="vitem">Confianza</span>
-      <span class="vitem">Respeto por el estilo ajeno</span>
+      <span class="vitem">Streetwear Mexicano Premium</span>
+      <span class="vitem">Lujo Urbano & Minimalista</span>
+      <span class="vitem">Autenticidad Absoluta</span>
+      <span class="vitem">Compromisos en Calidad</span>
     </div>
   </div>
 </section>
@@ -778,18 +909,6 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
       <p class="wdesc">El 68% prefiere ediciones limitadas. En Nova lanzamos drops de poco volumen para que lo que tengas sea único — y lo que uses cuente algo.</p>
     </div>
   </div>
-</section>
-
-<!-- NEWSLETTER -->
-<section class="newsletter reveal">
-  <div class="nl-t">
-    <h2 class="nl-title">Sé el primero en el drop</h2>
-    <p class="nl-sub">Únete y recibe acceso anticipado a ediciones limitadas, descuentos exclusivos y novedades de Nova antes que nadie.</p>
-  </div>
-  <form class="nlform" onsubmit="nlSubmit(event)">
-    <input class="nlinput" type="email" placeholder="tu@email.com" required>
-    <button class="nlbtn" type="submit">Entrar →</button>
-  </form>
 </section>
 
 <!-- ENVIOS -->
@@ -958,33 +1077,89 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
 
 <!-- FOOTER -->
 <footer>
-  <div class="fbrand">
-    NOVA STREETWEAR
-    <span>Aguascalientes, México © 2025</span>
+  <div class="footer-top">
+    <div class="nl-t">
+      <h2 class="nl-title" style="font-size:clamp(1.8rem, 3vw, 2.5rem); margin-bottom:.5rem;">Sé el primero en el drop</h2>
+      <p class="nl-sub">Únete y recibe acceso anticipado a ediciones limitadas y descuentos exclusivos.</p>
+    </div>
+    <form class="nlform" onsubmit="nlSubmit(event)" style="flex:1;min-width:300px;">
+      <input class="nlinput" type="email" placeholder="tu@email.com" required>
+      <button class="nlbtn" type="submit">Entrar →</button>
+    </form>
   </div>
-  <div class="flinks">
-    <a href="#envios">Envíos</a>
-    <a href="#guia-de-tallas">Guía de tallas</a>
-    <a href="#devoluciones">Devoluciones</a>
-    <a href="#contacto">Contacto</a>
-    <a href="https://www.instagram.com/emiliano_gutierrez14/" target="_blank" rel="noopener noreferrer">Instagram</a>
-    <a href="#">TikTok</a>
+  <div class="footer-bottom">
+    <div class="fbrand">
+      NOVA STREETWEAR
+      <span>Aguascalientes, México © 2025</span>
+    </div>
+    <div class="flinks">
+      <a href="#envios">Envíos</a>
+      <a href="#guia-de-tallas">Guía de tallas</a>
+      <a href="#devoluciones">Devoluciones</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#" onclick="openLegalModal('privacidad', event)">Privacidad</a>
+      <a href="#" onclick="openLegalModal('terminos', event)">Términos</a>
+      <a href="https://www.instagram.com/emiliano_gutierrez14/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="#">TikTok</a>
+    </div>
+    <p class="fcopy">Todos los derechos reservados · NOVA STREETWEAR</p>
   </div>
-  <p class="fcopy">Todos los derechos reservados · NOVA STREETWEAR</p>
 </footer>
 
 <script>
-/* Countdown */
-var target = new Date(Date.now() + 3*86400000 + 14*3600000 + 27*60000);
-function tick(){
-  var diff = target - Date.now();
-  if(diff <= 0) return;
-  document.getElementById('cd').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
-  document.getElementById('ch').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
-  document.getElementById('cm').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
-  document.getElementById('cs').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+/* Lógica de Stock del Drop (NOVA STAR PACK) */
+var stockEl = document.getElementById('drop-stock');
+var stockBar = document.getElementById('drop-stock-bar');
+if (stockEl) {
+  var stock = localStorage.getItem('nova_drop_stock');
+  if (!stock || parseInt(stock) <= 150) {
+    // Inicia exactamente en 1500 unidades (y reinicia si había guardado el test anterior de 150)
+    stock = 1500; 
+  } else {
+    // Cada vez que entra a la página, baja de 1 a 3 unidades aleatoriamente
+    stock = parseInt(stock) - (Math.floor(Math.random() * 3) + 1); 
+  }
+  
+  // Nunca dejamos que llegue a menos de 3 para que sigan comprando
+  if (stock < 4) stock = Math.floor(Math.random() * 4) + 3; 
+  
+  stockEl.innerText = stock;
+  if (stockBar) stockBar.style.width = ((stock / 1500) * 100) + '%';
+  localStorage.setItem('nova_drop_stock', stock);
+
+  // FOMO en tiempo real: baja automáticamente mientras ven la página
+  setInterval(function() {
+    if (Math.random() > 0.6 && stock > 4) { // Probabilidad más baja y sutil
+      stock -= (Math.floor(Math.random() * 2) + 1);
+      stockEl.innerText = stock;
+      if (stockBar) stockBar.style.width = ((stock / 1500) * 100) + '%';
+      localStorage.setItem('nova_drop_stock', stock);
+    }
+  }, 15000); // Se actualiza cada 15 segundos para que dure más tiempo
 }
-tick(); setInterval(tick,1000);
+
+/* Contadores de Urgencia en Productos */
+var prodTimers = document.querySelectorAll('.prod-timer');
+prodTimers.forEach(function(pt) {
+  // data-time está en milisegundos (ej. 86400000 = 24h)
+  pt.dataset.target = Date.now() + parseInt(pt.getAttribute('data-time'));
+});
+
+function updateProdTimers() {
+  var now = Date.now();
+  prodTimers.forEach(function(pt) {
+    var diff = parseInt(pt.dataset.target) - now;
+    if(diff <= 0) {
+      pt.textContent = "00:00:00";
+      return;
+    }
+    var h = String(Math.floor(diff / 3600000)).padStart(2, '0');
+    var m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+    var s = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+    pt.textContent = h + ":" + m + ":" + s;
+  });
+}
+updateProdTimers(); setInterval(updateProdTimers, 1000);
 
 /* Logica de seleccion de Tallas en Tarjetas */
 document.querySelectorAll('.pcard .sdot').forEach(function(dot) {
@@ -998,6 +1173,7 @@ document.querySelectorAll('.pcard .sdot').forEach(function(dot) {
 
 /* Lógica del Modal */
 var currentModalData = null;
+var currentModalQty = 1;
 
 function openModal(card) {
   var name = card.getAttribute('data-name');
@@ -1009,7 +1185,6 @@ function openModal(card) {
   document.getElementById('modal-img').src = img;
   document.getElementById('modal-name').innerText = name;
   document.getElementById('modal-sub').innerText = sub;
-  document.getElementById('modal-price').innerHTML = '<span class="cur">$</span>' + price + ' <small>MXN</small>';
 
   var badgeEl = document.getElementById('modal-badge');
   if(badge) {
@@ -1030,6 +1205,9 @@ function openModal(card) {
   document.getElementById('modal-sizes').innerHTML = sizesHtml;
 
   currentModalData = { name: name, price: price, img: img };
+  currentModalQty = 1;
+  document.getElementById('modal-qty-val').innerText = currentModalQty;
+  updateModalPrice();
 
   document.getElementById('pmodal').classList.add('open');
   document.getElementById('pmodal-overlay').classList.add('open');
@@ -1038,6 +1216,18 @@ function openModal(card) {
 function closeModal() {
   document.getElementById('pmodal').classList.remove('open');
   document.getElementById('pmodal-overlay').classList.remove('open');
+}
+
+function chgModalQty(delta) {
+  currentModalQty += delta;
+  if (currentModalQty < 1) currentModalQty = 1;
+  document.getElementById('modal-qty-val').innerText = currentModalQty;
+  updateModalPrice();
+}
+
+function updateModalPrice() {
+  var total = parseFloat(currentModalData.price) * currentModalQty;
+  document.getElementById('modal-price').innerHTML = '<span class="cur">$</span>' + total + ' <small>MXN</small>';
 }
 
 function openZoom(src) {
@@ -1084,7 +1274,13 @@ function closeCheckout(e) {
 
 function updateCheckoutSummary() {
   var itemsEl = document.getElementById('checkout-items');
-  var totalEl = document.getElementById('checkout-total');
+  var subtotalEl = document.getElementById('checkout-subtotal');
+  var shippingEl = document.getElementById('checkout-shipping');
+  var finalTotalEl = document.getElementById('checkout-final-total');
+
+  var state = document.getElementById('checkout-state').value;
+  var address = document.getElementById('checkout-address').value;
+
   var html = '';
   var total = 0;
   cartItems.forEach(function(item) {
@@ -1092,7 +1288,13 @@ function updateCheckoutSummary() {
     html += '<div style="margin-bottom:.8rem"><strong>' + item.qty + 'x ' + item.name + '</strong><div style="color:var(--muted);font-size:.85rem;">' + item.size + '</div></div>';
   });
   itemsEl.innerHTML = html;
-  totalEl.textContent = '$' + total + ' MXN';
+  
+  if(subtotalEl) subtotalEl.textContent = '$' + total + ' MXN';
+  
+  var shippingCost = state ? estimateShipping(state, address) : 0;
+  if(shippingEl) shippingEl.textContent = state ? '$' + shippingCost + ' MXN' : 'Por calcular';
+  
+  if(finalTotalEl) finalTotalEl.textContent = '$' + (total + shippingCost) + ' MXN';
 }
 
 function submitCheckout(e) {
@@ -1201,17 +1403,18 @@ function addCart(btn, e) {
 function addFromModal() {
   var selSize = document.querySelector('.modal-sdot.sel');
   var size = selSize ? selSize.textContent : 'Unica';
-  processAddCart(currentModalData.name, parseFloat(currentModalData.price), currentModalData.img, size);
+  processAddCart(currentModalData.name, parseFloat(currentModalData.price), currentModalData.img, size, currentModalQty);
   closeModal();
 }
 
-function processAddCart(name, price, img, size) {
+function processAddCart(name, price, img, size, qtyToAdd) {
   var existingItem = cartItems.find(function(i) { return i.name === name && i.size === size; });
+  var qty = qtyToAdd || 1;
   
   if(existingItem) {
-    existingItem.qty++;
+    existingItem.qty += qty;
   } else {
-    cartItems.push({ name: name, price: price, img: img, size: size, qty: 1 });
+    cartItems.push({ name: name, price: price, img: img, size: size, qty: qty });
   }
 
   updateCartUI();
@@ -1290,12 +1493,61 @@ function rmItem(index) {
   updateCartUI();
 }
 
+/* Wishlist Logic Dinámica */
+var wishlist = JSON.parse(localStorage.getItem('nova_wishlist') || '[]');
+
+document.querySelectorAll('.pcard').forEach(function(card) {
+  var name = card.getAttribute('data-name');
+  var imgContainer = card.querySelector('.pcard-img');
+  var wishBtn = document.createElement('div');
+  wishBtn.className = 'pwish';
+  wishBtn.setAttribute('data-name', name);
+  wishBtn.innerHTML = wishlist.indexOf(name) > -1 ? '♥' : '♡';
+  if (wishlist.indexOf(name) > -1) wishBtn.classList.add('active');
+  wishBtn.onclick = function(e) { toggleWishlist(this, e, name); };
+  imgContainer.appendChild(wishBtn); // Inyectar botón de corazón
+});
+
+function toggleWishlist(btn, e, name) {
+  e.stopPropagation(); // Evitar abrir vista rápida
+  var idx = wishlist.indexOf(name);
+  if(idx > -1) {
+    wishlist.splice(idx, 1);
+    btn.classList.remove('active');
+    btn.innerHTML = '♡';
+  } else {
+    wishlist.push(name);
+    btn.classList.add('active');
+    btn.innerHTML = '♥';
+    showToastMessage('Agregado a deseos ♥');
+  }
+  localStorage.setItem('nova_wishlist', JSON.stringify(wishlist));
+  updateWishlistUI();
+}
+
+function updateWishlistUI() {
+  var wNav = document.getElementById('wishlist-nav');
+  if(wNav) wNav.innerHTML = '<span style="color:var(--red)">♥</span> (' + wishlist.length + ')';
+  var fWish = document.getElementById('f-wish');
+  if(fWish && fWish.classList.contains('active')){
+    filt('wishlist', fWish); // Actualizar vista en vivo si desmarcan
+  }
+}
+updateWishlistUI(); // Inicializar
+
+function showWishlist() {
+  filt('wishlist', document.getElementById('f-wish'));
+  document.getElementById('productos').scrollIntoView();
+}
+
 /* Filter */
 function filt(cat, btn){
   document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active')});
   btn.classList.add('active');
   document.querySelectorAll('.pcard').forEach(function(c){
-    c.style.display = (cat==='todos' || c.dataset.cat===cat) ? 'block' : 'none';
+    if (cat === 'todos') c.style.display = 'block';
+    else if (cat === 'wishlist') c.style.display = wishlist.indexOf(c.getAttribute('data-name')) > -1 ? 'block' : 'none';
+    else c.style.display = (c.dataset.cat===cat) ? 'block' : 'none';
   });
 }
 
@@ -1361,6 +1613,41 @@ function calculateShipping(e) {
   }
   resultEl.innerHTML = '<strong>Precio estimado de envío desde Aguascalientes: $' + price + ' MXN</strong><p>' + deliveryText + '</p>';
 }
+
+/* Textos Legales */
+function openLegalModal(type, e) {
+  e.preventDefault();
+  var title = document.getElementById('legal-title');
+  var content = document.getElementById('legal-content');
+  
+  if (type === 'privacidad') {
+    title.innerText = 'Aviso de Privacidad';
+    content.innerHTML = '<p><strong>1. Identidad y domicilio del responsable:</strong> NOVA STREETWEAR, con domicilio en Aguascalientes, México, es responsable de recabar sus datos personales, del uso que se le dé a los mismos y de su protección.</p>' +
+      '<p style="margin-top:1rem;"><strong>2. Datos personales que recabamos:</strong> Nombre completo, correo electrónico, número de teléfono, dirección de envío y facturación para gestionar sus pedidos.</p>' +
+      '<p style="margin-top:1rem;"><strong>3. Finalidad del tratamiento de datos:</strong> Sus datos serán utilizados para procesar compras, enviar notificaciones de envío, brindar atención al cliente y enviar promociones exclusivas (a las que puede darse de baja en cualquier momento).</p>' +
+      '<p style="margin-top:1rem;"><strong>4. Derechos ARCO:</strong> Usted tiene derecho de acceder, rectificar y cancelar sus datos personales, así como de oponerse al tratamiento de los mismos. Para ejercer estos derechos, contáctenos en <strong>elnanopro09@gmail.com</strong>.</p>' +
+      '<p style="margin-top:1rem;"><strong>5. Modificaciones al Aviso de Privacidad:</strong> Cualquier modificación a este aviso podrá consultarla en esta misma página.</p>' +
+      '<p style="margin-top:2rem;"><em>Última actualización: Mayo 2026.</em></p>';
+  } else if (type === 'terminos') {
+    title.innerText = 'Términos y Condiciones';
+    content.innerHTML = '<p><strong>1. Aceptación:</strong> Al utilizar el sitio web de NOVA STREETWEAR, usted acepta estos términos y condiciones en su totalidad.</p>' +
+      '<p style="margin-top:1rem;"><strong>2. Productos y Precios:</strong> Todos los precios están en Pesos Mexicanos (MXN) y pueden cambiar sin previo aviso. Nos esforzamos por mostrar colores y descripciones de manera precisa, pero no garantizamos la exactitud perfecta en su pantalla.</p>' +
+      '<p style="margin-top:1rem;"><strong>3. Envíos y Entregas:</strong> Los tiempos de entrega (3-7 días hábiles) son estimados. NOVA STREETWEAR no se hace responsable por retrasos directamente atribuibles a las paqueterías.</p>' +
+      '<p style="margin-top:1rem;"><strong>4. Devoluciones y Cambios:</strong> Se aceptan devoluciones dentro de los 15 días naturales posteriores a la entrega, siempre que la prenda esté sin uso, sin lavar y con etiquetas. Revise nuestra sección de Devoluciones para más detalles.</p>' +
+      '<p style="margin-top:1rem;"><strong>5. Propiedad Intelectual:</strong> Todo el contenido de este sitio (imágenes, logotipos, textos) es propiedad de NOVA STREETWEAR y está protegido por las leyes vigentes.</p>' +
+      '<p style="margin-top:2rem;"><em>Última actualización: Mayo 2026.</em></p>';
+  }
+  
+  document.getElementById('legal-overlay').classList.add('open');
+}
+
+function closeLegalModal(e) {
+  if(e) e.stopPropagation();
+  document.getElementById('legal-overlay').classList.remove('open');
+}
+</script>
+</body>
+</html>
 </script>
 </body>
 </html>
