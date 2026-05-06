@@ -353,29 +353,108 @@ footer{padding:4rem 2.5rem 2rem; border-top: 1px solid var(--gray3);}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
+/* =================================
+  MEDIA QUERIES RESPONSIVE
+==================================== */
+
+/* TABLET & LARGER PHONES */
+@media (max-width: 1024px) {
+  nav {
+    padding: 1rem 1.5rem;
+  }
+  .nav-links {
+    display: none; /* Ocultar links en tablet, se necesitaría un menú hamburguesa */
+  }
+  .hero {
+    padding: 8rem 2rem 4rem;
+  }
+  .htitle {
+    font-size: clamp(4rem, 12vw, 8rem);
+  }
+  .hrow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  .hcta {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-p, .btn-g {
+    text-align: center;
+    width: 100%;
+  }
+  .drops, .products-section, .reviews, .statement, .collections, .why, .newsletter, .contact, .shipping, .size-guide, .returns {
+    padding: 4rem 2rem;
+  }
+  .drops {
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .dvisual-epic {
+    width: 100%;
+    max-width: 450px;
+  }
+  .pgrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  .statement, .shipping-grid, .returns-grid, .size-grid, .contact-grid, .checkout-grid, .cgrid, .wgrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .ccard.feat {
+    grid-row: auto;
+    min-height: 320px;
+  }
+  .newsletter {
+    flex-direction: column;
+  }
+  .nlform {
+    width: 100%;
+  }
+  .footer-top, .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .checkout-modal {
+    padding: 2rem 1rem;
+  }
+}
+
 /* MOBILE */
-@media(max-width:768px){
-  nav{padding:.8rem 1.2rem}
-  .nav-links{display:none}
-  .hero{padding:6rem 1.2rem 3rem;justify-content:flex-end}
-  .hcta{flex-direction:column;align-items:stretch;width:100%}
-  .btn-p,.btn-g{width:100%;text-align:center}
-  .htitle{font-size:clamp(3.5rem,16vw,7rem)}
-  .drops,.products-section,.collections,.why,.newsletter,.statement{padding:3rem 1.2rem}
-  .drops{flex-direction:column;gap:3rem}
-  .dvisual-epic{width:100%;max-width:350px;margin:0 auto}
-  .statement{grid-template-columns:1fr}
-  .cgrid{grid-template-columns:1fr;gap:1rem}
-  .ccard.feat{grid-row:auto;min-height:280px}
-  .wgrid{grid-template-columns:1fr}
-  .newsletter{flex-direction:column;gap:2rem}
-  .nlform{width:100%}
-  .footer-top{flex-direction:column;gap:2rem;text-align:center}
-  .modal-content{flex-direction:column}
-  .footer-bottom{flex-direction:column;align-items:flex-start;gap:1.5rem}
-  .pmodal{max-height:90vh;overflow-y:auto}
-  .modal-img-container{aspect-ratio:1/1}
-  .modal-info{padding:2rem 1.5rem}
+@media (max-width: 767px) {
+  nav {
+    padding: .8rem 1.2rem;
+  }
+  .hero {
+    padding: 6rem 1.2rem 3rem;
+  }
+  .htitle {
+    font-size: clamp(3.5rem, 16vw, 7rem);
+  }
+  .drops, .products-section, .reviews, .statement, .collections, .why, .newsletter, .contact, .shipping, .size-guide, .returns {
+    padding: 3rem 1.2rem;
+  }
+  .pgrid {
+    gap: 1.5rem;
+  }
+  .modal-content {
+    flex-direction: column;
+  }
+  .pmodal {
+    max-height: 90vh;
+    overflow-y: auto;
+    width: 95%;
+  }
+  .modal-img-container {
+    aspect-ratio: 1/1;
+  }
+  .modal-info {
+    padding: 2rem 1.5rem;
+  }
 }
 </style>
 </head>
@@ -1327,6 +1406,8 @@ function submitCheckout(e) {
   var communication = 'Hola ' + name + ', gracias por tu compra en Nova. Tu pedido (' + ticket + ') incluye:\n' + summaryLines + '\nEnvío a: ' + address + ', ' + city + ', ' + state + ' ' + zip + '.\nTotal pedido: $' + orderTotal + ' MXN. Envío estimado: $' + shipping + ' MXN. Total final: $' + totalWithShipping + ' MXN.';
 
   var emailParams = {
+    company_name: 'NOVA STREETWEAR',
+    company_logo: 'https://i.imgur.com/2WBuXWc.png',
     ticket: ticket,
     customer_name: name,
     customer_email: email,

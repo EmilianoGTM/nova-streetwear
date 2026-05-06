@@ -24,7 +24,9 @@ export default async function handler(req, res) {
     order_total,
     shipping_cost,
     total_with_shipping,
-    message_body
+    message_body,
+    company_name = 'NOVA STREETWEAR',
+    company_logo = 'https://i.imgur.com/2WBuXWc.png'
   } = req.body;
 
   // Validar que todos los campos estén presentes
@@ -45,6 +47,8 @@ export default async function handler(req, res) {
         template_id: process.env.EMAILJS_TEMPLATE_ID,
         user_id: process.env.EMAILJS_PUBLIC_KEY,
         template_params: {
+          company_name,
+          company_logo,
           ticket,
           customer_name,
           customer_email,
