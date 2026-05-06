@@ -366,7 +366,11 @@ footer{padding:4rem 2.5rem 2rem; border-top: 1px solid var(--gray3);}
     display: none; /* Ocultar links en tablet, se necesitaría un menú hamburguesa */
   }
   .hero {
+    min-height: 80vh;
     padding: 8rem 2rem 4rem;
+  }
+  .hero-bg img {
+    object-position: center 15%;
   }
   .htitle {
     font-size: clamp(4rem, 12vw, 8rem);
@@ -453,7 +457,11 @@ footer{padding:4rem 2.5rem 2rem; border-top: 1px solid var(--gray3);}
     gap: 0.5rem !important;
   }
   .hero {
+    min-height: 75vh;
     padding: 6rem 1rem 3rem;
+  }
+  .hero-bg img {
+    object-position: center 15%;
   }
   .htitle {
     font-size: clamp(3rem, 15vw, 4.5rem);
@@ -1727,96 +1735,6 @@ document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
 /* Newsletter */
 function nlSubmit(e){
   e.preventDefault();
-  var btn = e.target.querySelector('.nlbtn');
-  btn.textContent = '¡Listo! ✓';
-  btn.style.background = '#3a3a3a';
-  btn.style.color = 'var(--white)';
-  setTimeout(function(){btn.textContent='Entrar →';btn.style.background='';btn.style.color=''},3000);
-}
-
-function calculateShipping(e) {
-  e.preventDefault();
-  var city = document.getElementById('shipping-city').value.trim();
-  var state = document.getElementById('shipping-state').value;
-  var zip = document.getElementById('shipping-zip').value.trim();
-  var address = document.getElementById('shipping-address').value.trim();
-  var resultEl = document.getElementById('quote-result');
-
-  if (!city || !state || !zip || !address) {
-    resultEl.textContent = 'Por favor completa todos los campos para calcular el envío.';
-    return;
-  }
-
-  var rates = {
-    'Aguascalientes': 120,
-    'Jalisco': 160,
-    'Ciudad de México': 190,
-    'Estado de México': 190,
-    'Nuevo León': 200,
-    'Guanajuato': 150,
-    'Querétaro': 150,
-    'San Luis Potosí': 150,
-    'Zacatecas': 140,
-    'Baja California': 220,
-    'Yucatán': 240,
-    'Otros': 260
-  };
-
-  var basePrice = rates[state] || rates['Otros'];
-  var extra = 0;
-
-  if (/centro|periferico|industrial/i.test(address)) {
-    extra += 15;
-  }
-  if (/colegi|jardín|escuela/i.test(address)) {
-    extra += 20;
-  }
-
-  var price = Math.max(80, basePrice + extra);
-  var deliveryText = 'Entrega estimada en 3-7 días hábiles según tu zona.';
-  if (state === 'Aguascalientes') {
-    deliveryText = 'Envío desde Aguascalientes: entrega el mismo día o al día siguiente, según demanda.';
-  }
-  resultEl.innerHTML = '<strong>Precio estimado de envío desde Aguascalientes: $' + price + ' MXN</strong><p>' + deliveryText + '</p>';
-}
-
-/* Textos Legales */
-function openLegalModal(type, e) {
-  e.preventDefault();
-  var title = document.getElementById('legal-title');
-  var content = document.getElementById('legal-content');
-  
-  if (type === 'privacidad') {
-    title.innerText = 'Aviso de Privacidad';
-    content.innerHTML = '<p><strong>1. Identidad y domicilio del responsable:</strong> NOVA STREETWEAR, con domicilio en Aguascalientes, México, es responsable de recabar sus datos personales, del uso que se le dé a los mismos y de su protección.</p>' +
-      '<p style="margin-top:1rem;"><strong>2. Datos personales que recabamos:</strong> Nombre completo, correo electrónico, número de teléfono, dirección de envío y facturación para gestionar sus pedidos.</p>' +
-      '<p style="margin-top:1rem;"><strong>3. Finalidad del tratamiento de datos:</strong> Sus datos serán utilizados para procesar compras, enviar notificaciones de envío, brindar atención al cliente y enviar promociones exclusivas (a las que puede darse de baja en cualquier momento).</p>' +
-      '<p style="margin-top:1rem;"><strong>4. Derechos ARCO:</strong> Usted tiene derecho de acceder, rectificar y cancelar sus datos personales, así como de oponerse al tratamiento de los mismos. Para ejercer estos derechos, contáctenos en <strong>elnanopro09@gmail.com</strong>.</p>' +
-      '<p style="margin-top:1rem;"><strong>5. Modificaciones al Aviso de Privacidad:</strong> Cualquier modificación a este aviso podrá consultarla en esta misma página.</p>' +
-      '<p style="margin-top:2rem;"><em>Última actualización: Mayo 2026.</em></p>';
-  } else if (type === 'terminos') {
-    title.innerText = 'Términos y Condiciones';
-    content.innerHTML = '<p><strong>1. Aceptación:</strong> Al utilizar el sitio web de NOVA STREETWEAR, usted acepta estos términos y condiciones en su totalidad.</p>' +
-      '<p style="margin-top:1rem;"><strong>2. Productos y Precios:</strong> Todos los precios están en Pesos Mexicanos (MXN) y pueden cambiar sin previo aviso. Nos esforzamos por mostrar colores y descripciones de manera precisa, pero no garantizamos la exactitud perfecta en su pantalla.</p>' +
-      '<p style="margin-top:1rem;"><strong>3. Envíos y Entregas:</strong> Los tiempos de entrega (3-7 días hábiles) son estimados. NOVA STREETWEAR no se hace responsable por retrasos directamente atribuibles a las paqueterías.</p>' +
-      '<p style="margin-top:1rem;"><strong>4. Devoluciones y Cambios:</strong> Se aceptan devoluciones dentro de los 15 días naturales posteriores a la entrega, siempre que la prenda esté sin uso, sin lavar y con etiquetas. Revise nuestra sección de Devoluciones para más detalles.</p>' +
-      '<p style="margin-top:1rem;"><strong>5. Propiedad Intelectual:</strong> Todo el contenido de este sitio (imágenes, logotipos, textos) es propiedad de NOVA STREETWEAR y está protegido por las leyes vigentes.</p>' +
-      '<p style="margin-top:2rem;"><em>Última actualización: Mayo 2026.</em></p>';
-  }
-  
-  document.getElementById('legal-overlay').classList.add('open');
-}
-
-function closeLegalModal(e) {
-  if(e) e.stopPropagation();
-  document.getElementById('legal-overlay').classList.remove('open');
-}
-</script>
-</body>
-</html>
-</script>
-</body>
-</html>ventDefault();
   var btn = e.target.querySelector('.nlbtn');
   btn.textContent = '¡Listo! ✓';
   btn.style.background = '#3a3a3a';
